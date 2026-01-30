@@ -1032,66 +1032,65 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
     };
   }, [items, scale]);
 
+  const handleButtonClick = () => {
+    if (activeItem?.onOpen) {
+      activeItem.onOpen(); // 🔥 OPEN MODAL
+    }
+  };
 
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      {/* 🎯 MAIN CANVAS */}
+      <canvas
+        id="infinite-grid-menu-canvas"
+        ref={canvasRef}
+        style={{ width: "100%", height: "100%" }}
+        />
 
- const handleButtonClick = () => {
-  if (activeItem?.onOpen) {
-    activeItem.onOpen(); // 🔥 OPEN MODAL
-  }
-};
-
-return (
-  <div style={{ position: "relative", width: "100%", height: "100%" }}>
-    {/* 🎯 MAIN CANVAS */}
-    <canvas
-      id="infinite-grid-menu-canvas"
-      ref={canvasRef}
-      style={{ width: "100%", height: "100%" }}
-    />
-
-    {/* 🎯 UI OVERLAY */}
-    {activeItem && (
-      <div
-        style={{
-          position: "absolute",
-          bottom: "40px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          textAlign: "center",
-          pointerEvents: "none", // allow canvas interaction
-        }}
-      >
-        {/* TITLE */}
-        <h2 className={`face-title ${isMoving ? "inactive" : "active"}`}>
-          {activeItem.title}
-        </h2>
-
-        {/* IMAGE */}
-        {activeItem.image && (
-          <img
-            src={activeItem.image}
-            alt={activeItem.title}
-            style={{
-              width: "120px",
-              margin: "12px auto",
-              display: "block",
-              filter: "drop-shadow(0 0 12px rgba(80,160,255,0.6))",
-            }}
-          />
-        )}
-
-        {/* BUTTON */}
-        <button
-          className={`open-button ${isMoving ? "inactive" : "active"}`}
-          onClick={handleButtonClick}
+      {/* 🎯 UI OVERLAY */}
+      {activeItem && (
+        <div
           style={{
-            pointerEvents: "auto", // re-enable click
-            marginTop: "10px",
+            position: "absolute",
+            bottom: "40px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            textAlign: "center",
+            pointerEvents: "none", // allow canvas interaction
           }}
         >
-          OPEN
-        </button>
-      </div>
-    )}
-  </div>
-);
+          {/* TITLE */}
+          <h2 className={`face-title ${isMoving ? "inactive" : "active"}`}>
+            {activeItem.title}
+          </h2>
+
+          {/* IMAGE */}
+          {activeItem.image && (
+            <img
+              src={activeItem.image}
+              alt={activeItem.title}
+              style={{
+                width: "120px",
+                margin: "12px auto",
+                display: "block",
+                filter: "drop-shadow(0 0 12px rgba(80,160,255,0.6))",
+              }}
+            />
+          )}
+
+          {/* BUTTON */}
+          <button
+            className={`open-button ${isMoving ? "inactive" : "active"}`}
+            onClick={handleButtonClick}
+            style={{
+              pointerEvents: "auto", // re-enable click
+              marginTop: "10px",
+            }}
+          >
+            OPEN
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}

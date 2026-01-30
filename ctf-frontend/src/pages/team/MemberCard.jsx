@@ -1,4 +1,4 @@
-import Lanyard from "../team/Lanyard";
+// import Lanyard from "../team/Lanyard";
 
 export default function MemberCard({ member }) {
   return (
@@ -17,9 +17,9 @@ export default function MemberCard({ member }) {
       }}
     >
       {/* LANYARD */}
-      <div style={{ width: "100%", height: "380px" }}>
+      {/* <div style={{ width: "100%", height: "380px" }}>
         <Lanyard />
-      </div>
+      </div> */}
 
       {/* MEMBER INFO */}
       <div
